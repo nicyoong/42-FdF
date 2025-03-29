@@ -50,7 +50,7 @@ void		free_split(char **arr);
 
 // Parsing
 void		parse_map(char *filename, t_map **map);
-void		parse_line(char *line, int *z_row);
+void		parse_line(char *line, t_color *points_row);
 
 // Projection
 void		compute_projection(t_data *data);
@@ -58,7 +58,7 @@ void		scale_and_center(t_data *data);
 
 // Drawing
 void		put_pixel(t_data *data, int x, int y, int color);
-void		draw_line(t_point p0, t_point p1, t_data *data);
+void		draw_line(t_point p0, t_point p1, t_data *data, int color);
 void		draw_map(t_data *data);
 
 // Events
