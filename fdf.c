@@ -201,7 +201,7 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	}
 }
 
-void	draw_line(t_point p0, t_point p1, t_data *data)
+void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 {
 	t_point	delta;
 	t_point	sign;
@@ -226,7 +226,7 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 
 	while (1)
 	{
-		put_pixel(data, x0, y0, 0xFFFFFF);
+		put_pixel(data, x0, y0, color);
 		if (x0 == x1 && y0 == y1)
 			break ;
 		e2 = 2 * error;
