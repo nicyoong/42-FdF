@@ -1,78 +1,55 @@
 #!/bin/bash
 
-# Test script for FDF project
-# Usage: ./test_fdf.sh
+# Interactive FDF tester
+# Usage: ./test_fdf.sh ./your_fdf_executable
+
+# Check for valid arguments
+if [ $# -ne 1 ] || [ ! -f "$1" ]; then
+    echo "Usage: $0 /path/to/fdf_executable"
+    exit 1
+fi
 
 # Configuration
 TEST_DIR="./test_maps"
-FDF_EXEC="./fdf"
-TIMEOUT_DURATION=5  # seconds per test
+FDF_EXEC="$1"
 COLOR_GREEN="\033[32m"
-COLOR_RED="\033[31m"
+COLOR_BLUE="\033[34m"
 COLOR_RESET="\033[0m"
 
-# Check if test directory exists
+# Check test directory
 if [ ! -d "$TEST_DIR" ]; then
     echo "Error: Test directory $TEST_DIR not found!"
     exit 1
 fi
 
-# Check if fdf executable exists
-if [ ! -f "$FDF_EXEC" ]; then
-    echo "Error: FDF executable $FDF_EXEC not found!"
-    exit 1
-fi
-
-# Get list of test files
+# Get test files
 TEST_FILES=("$TEST_DIR"/*.fdf)
 if [ ${#TEST_FILES[@]} -eq 0 ]; then
     echo "Error: No .fdf files found in $TEST_DIR"
     exit 1
 fi
 
-# Counters
-TOTAL_TESTS=0
-PASSED=0
-FAILED=0
-
-# Header
-echo "FDF TEST SUITE"
-echo "---------------"
-echo "Testing executable: $FDF_EXEC"
-echo "Test maps directory: $TEST_DIR"
-echo "Found ${#TEST_FILES[@]} test files"
-echo
+# Test counter
+TOTAL_TESTS=${#TEST_FILES[@]}
+CURRENT_TEST=1
 
 # Run tests
+echo "FDF Interactive Test Suite"
+echo "--------------------------"
+echo "Executable: $FDF_EXEC"
+echo "Found $TOTAL_TESTS test files"
+echo -e "Controls:\n- Press ESC or close window to advance to next test\n- Ctrl+C to exit tester\n"
+
 for test_file in "${TEST_FILES[@]}"; do
-    ((TOTAL_TESTS++))
-    printf "Testing %-40s ... " "$(basename "$test_file")"
+    echo -e "${COLOR_BLUE}[Test $CURRENT_TEST/$TOTAL_TESTS]${COLOR_RESET}"
+    echo "Loading: $(basename "$test_file")"
+    echo -e "${COLOR_GREEN}Window should open shortly...${COLOR_RESET}"
     
-    # Run with timeout
-    timeout $TIMEOUT_DURATION $FDF_EXEC "$test_file" >/dev/null 2>&1
-    EXIT_STATUS=$?
+    # Run FDF and wait for it to exit
+    "$FDF_EXEC" "$test_file"
     
-    # Evaluate result
-    if [ $EXIT_STATUS -eq 0 ]; then
-        printf "${COLOR_GREEN}PASS${COLOR_RESET}\n"
-        ((PASSED++))
-    elif [ $EXIT_STATUS -eq 124 ]; then
-        printf "${COLOR_RED}FAIL (Timeout)${COLOR_RESET}\n"
-        ((FAILED++))
-    else
-        printf "${COLOR_RED}FAIL (Error $EXIT_STATUS)${COLOR_RESET}\n"
-        ((FAILED++))
-    fi
+    echo -e "Closed: $(basename "$test_file")\n"
+    ((CURRENT_TEST++))
 done
 
-# Summary
-echo
-echo "TEST SUMMARY"
-echo "------------"
-echo "Total tests:  $TOTAL_TESTS"
-echo "${COLOR_GREEN}Passed:      $PASSED${COLOR_RESET}"
-echo "${COLOR_RED}Failed:      $FAILED${COLOR_RESET}"
-echo
-
-# Exit code matches failure count
-exit $FAILED
+echo "All tests completed!"
