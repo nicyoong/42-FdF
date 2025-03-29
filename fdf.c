@@ -146,7 +146,7 @@ void	compute_projection(t_data *data)
 		while (++j < data->map->width)
 		{
 			data->screen_coords[i][j].x = (j - i) * cos(theta);
-			data->screen_coords[i][j].y = (j + i) * sin(theta) - data->map->z_values[i][j];
+			data->screen_coords[i][j].y = (j + i) * sin(theta) - data->map->points[i][j].z;
 		}
 	}
 }
@@ -255,9 +255,16 @@ void	draw_map(t_data *data)
 		while (++j < data->map->width)
 		{
 			if (j < data->map->width - 1)
-				draw_line(data->screen_coords[i][j], data->screen_coords[i][j + 1], data);
+				draw_line(data->screen_coords[i][j], 
+						data->screen_coords[i][j+1], 
+						data, 
+						data->map->points[i][j].color);
+
 			if (i < data->map->height - 1)
-				draw_line(data->screen_coords[i][j], data->screen_coords[i + 1][j], data);
+				draw_line(data->screen_coords[i][j], 
+						data->screen_coords[i+1][j], 
+						data, 
+						data->map->points[i][j].color);
 		}
 	}
 }
