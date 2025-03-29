@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:28:14 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:32:12 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 01:34:22 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,23 +278,3 @@ void	draw_map(t_data *data)
 		}
 	}
 }
-
-int	key_hook(int keycode, t_data *data)
-{
-	if (keycode == 65307)
-	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	return (0);
-}
-
-int	close_hook(t_data *data)
-{
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->win);
-	exit(0);
-	return (0);
-}
-
