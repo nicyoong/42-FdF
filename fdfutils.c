@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:40:15 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:40:41 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:30:55 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	ft_atoi_base(const char *str, int base)
 		else if (base > 10 && *ptr >= 'A' && *ptr <= 'F')
 			result = result * base + (*ptr - 'A' + 10);
 		else
-			break;
+			break ;
 		ptr++;
 	}
 	return (result);
