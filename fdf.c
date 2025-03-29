@@ -59,3 +59,19 @@ void	parse_map(char *filename, t_map **map)
 	ft_lstclear(&lines, NULL);
 }
 
+void	parse_line(char *line, int *z_row)
+{
+	char	**tokens;
+	int		i;
+
+	tokens = ft_split(line, ' ');
+	i = 0;
+	while (tokens[i])
+	{
+		z_row[i] = ft_atoi(tokens[i]);
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
+}
+
