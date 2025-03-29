@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:28:14 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:28:19 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 01:29:33 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,28 @@ int	count_words(const char *s, char c)
 	return (count);
 }
 
-int ft_atoi_base(const char *str, int base)
+int	ft_atoi_base(const char *str, int base)
 {
-    int     result;
-    char    *ptr;
+	int		result;
+	char	*ptr;
 
-    result = 0;
-    ptr = (char *)str;
-    if (base == 16 && ft_strncmp(ptr, "0x", 2) == 0)
-        ptr += 2;
-    while (*ptr)
-    {
-        if (*ptr >= '0' && *ptr <= '9')
-            result = result * base + (*ptr - '0');
-        else if (base > 10 && *ptr >= 'a' && *ptr <= 'f')
-            result = result * base + (*ptr - 'a' + 10);
-        else if (base > 10 && *ptr >= 'A' && *ptr <= 'F')
-            result = result * base + (*ptr - 'A' + 10);
-        else
-            break;
-        ptr++;
-    }
-    return (result);
+	result = 0;
+	ptr = (char *)str;
+	if (base == 16 && ft_strncmp(ptr, "0x", 2) == 0)
+		ptr += 2;
+	while (*ptr)
+	{
+		if (*ptr >= '0' && *ptr <= '9')
+			result = result * base + (*ptr - '0');
+		else if (base > 10 && *ptr >= 'a' && *ptr <= 'f')
+			result = result * base + (*ptr - 'a' + 10);
+		else if (base > 10 && *ptr >= 'A' && *ptr <= 'F')
+			result = result * base + (*ptr - 'A' + 10);
+		else
+			break;
+		ptr++;
+	}
+	return (result);
 }
 
 void	parse_map(char *filename, t_map **map)
