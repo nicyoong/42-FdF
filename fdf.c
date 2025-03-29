@@ -75,3 +75,26 @@ void	parse_line(char *line, int *z_row)
 	free(tokens);
 }
 
+void	compute_projection(t_data *data)
+{
+	int		i;
+	int		j;
+	float	theta;
+
+	theta = M_PI / 6;
+	data->screen_coords = malloc(sizeof(t_point *) * data->map->height);
+	i = -1;
+	while (++i < data->map->height)
+	{
+		data->screen_coords[i] = malloc(sizeof(t_point) * data->map->width);
+		j = -1;
+		while (++j < data->map->width)
+		{
+			data->screen_coords[i][j].x = (j - i) * cos(theta);
+			data->screen_coords[i][j].y = (j + i) * sin(theta) - data->map->z_values[i][j];
+		}
+	}
+}
+
+
+
