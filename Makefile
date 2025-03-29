@@ -5,6 +5,7 @@ NAME    := fdf
 SRCS    := \
 			fdf.c \
 			hook.c \
+			draw,c \
 			main.c
 OBJS    := $(SRCS:.c=.o)
 
