@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:27:24 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:27:25 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 01:47:23 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@ typedef struct s_map
 	int		width;
 	t_color	**points;
 }	t_map;
+
+typedef struct s_bounds {
+	float x_min;
+	float x_max;
+	float y_min;
+	float y_max;
+}	t_bounds;
 
 typedef struct s_data
 {
