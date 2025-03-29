@@ -8,6 +8,7 @@ SRCS    := \
 			draw.c \
 			fdfutils.c \
 			fdfparser.c \
+			scaling.c \
 			main.c
 OBJS    := $(SRCS:.c=.o)
 
