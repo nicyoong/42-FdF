@@ -17,15 +17,15 @@ typedef struct s_point
 }	t_point;
 
 typedef struct s_color {
-    int     z;
-    int     color;
-} t_color;
+	int	z;
+	int	color;
+}	t_color;
 
 typedef struct s_map
 {
 	int		height;
 	int		width;
-	t_color **points;
+	t_color	**points;
 }	t_map;
 
 typedef struct s_data
@@ -45,24 +45,28 @@ typedef struct s_data
 
 /*** FUNCTION PROTOTYPES ***/
 // Error handling
-void		exit_error(char *msg);
-void		free_split(char **arr);
+void	exit_error(char *msg);
+void	free_split(char **arr);
+
+// Utility
+int		count_words(const char *s, char c);
+int		ft_atoi_base(const char *str, int base);
 
 // Parsing
-void		parse_map(char *filename, t_map **map);
-void		parse_line(char *line, t_color *points_row);
+void	parse_map(char *filename, t_map **map);
+void	parse_line(char *line, t_color *points_row);
 
 // Projection
-void		compute_projection(t_data *data);
-void		scale_and_center(t_data *data);
+void	compute_projection(t_data *data);
+void	scale_and_center(t_data *data);
 
 // Drawing
-void		put_pixel(t_data *data, int x, int y, int color);
-void		draw_line(t_point p0, t_point p1, t_data *data, int color);
-void		draw_map(t_data *data);
+void	put_pixel(t_data *data, int x, int y, int color);
+void	draw_line(t_point p0, t_point p1, t_data *data, int color);
+void	draw_map(t_data *data);
 
 // Events
-int			key_hook(int keycode, t_data *data);
-int			close_hook(t_data *data);
+int		key_hook(int keycode, t_data *data);
+int		close_hook(t_data *data);
 
 #endif
