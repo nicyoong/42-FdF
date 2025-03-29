@@ -146,3 +146,34 @@ void	put_pixel(t_data *data, int x, int y, int color)
 	}
 }
 
+void	draw_line(t_point p0, t_point p1, t_data *data)
+{
+	t_point	delta;
+	t_point	sign;
+	int		error;
+	int		e2;
+
+	delta.x = abs(p1.x - p0.x);
+	delta.y = -abs(p1.y - p0.y);
+	sign.x = p0.x < p1.x ? 1 : -1;
+	sign.y = p0.y < p1.y ? 1 : -1;
+	error = delta.x + delta.y;
+	while (1)
+	{
+		put_pixel(data, p0.x, p0.y, 0xFFFFFF);
+		if (p0.x == p1.x && p0.y == p1.y)
+			break ;
+		e2 = 2 * error;
+		if (e2 >= delta.y)
+		{
+			error += delta.y;
+			p0.x += sign.x;
+		}
+		if (e2 <= delta.x)
+		{
+			error += delta.x;
+			p0.y += sign.y;
+		}
+	}
+}
+
