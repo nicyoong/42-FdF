@@ -2,7 +2,8 @@
 NAME    := fdf
 
 # List your source C files here (add or remove as needed)
-SRCS    := main.c file1.c file2.c
+SRCS    := \
+			fdf.c
 OBJS    := $(SRCS:.c=.o)
 
 # Compiler and flags
@@ -51,7 +52,7 @@ clean:
 fclean: clean
 	rm -f $(NAME) $(LIBFT_A) $(MLX_LINUX_A) $(MLX_A)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(MLX_DIR) -f Makefile.mk fclean
+	$(MAKE) -C $(MLX_DIR) -f Makefile.mk clean
 
 # re: fclean then all
 re: fclean all
