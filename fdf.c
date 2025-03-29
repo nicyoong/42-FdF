@@ -16,6 +16,27 @@ void	free_split(char **arr)
 	free(arr);
 }
 
+int	count_words(const char *s, char c)
+{
+	int	count;
+	int	in_word;
+
+	count = 0;
+	in_word = 0;
+	while (*s)
+	{
+		if (*s != c && in_word == 0)
+		{
+			in_word = 1;
+			count++;
+		}
+		else if (*s == c)
+			in_word = 0;
+		s++;
+	}
+	return (count);
+}
+
 void	parse_map(char *filename, t_map **map)
 {
 	int		fd;
