@@ -1,4 +1,5 @@
 #include "minilibx-linux/mlx.h"
+#include <stdlib.h>
 
 #define WIDTH 400
 #define HEIGHT 300
