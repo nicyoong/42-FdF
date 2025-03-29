@@ -6,11 +6,11 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:36:02 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:36:09 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 01:38:41 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.c"
+#include "fdf.h"
 
 void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 {
