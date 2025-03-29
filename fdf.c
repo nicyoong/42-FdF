@@ -134,3 +134,15 @@ void	scale_and_center(t_data *data)
 		}
 	}
 }
+
+void	put_pixel(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	if (x >= 0 && x < data->win_width && y >= 0 && y < data->win_height)
+	{
+		dst = data->img_addr + (y * data->line_length + x * (data->bpp / 8));
+		*(unsigned int *)dst = color;
+	}
+}
+
