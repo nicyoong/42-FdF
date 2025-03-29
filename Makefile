@@ -25,6 +25,7 @@ all: $(NAME)
 # Build libft and copy its library if needed
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
+	$(MAKE) bonus -C $(LIBFT_DIR)
 	cp -u $(LIBFT_DIR)/$(LIBFT_A) .
 
 # Build minilibx libraries (both) and copy them if needed.
