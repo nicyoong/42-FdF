@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:28:14 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:29:33 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 01:30:30 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,28 +118,28 @@ void	parse_map(char *filename, t_map **map)
 
 void parse_line(char *line, t_color *points_row)
 {
-    char    **tokens;
-    char    **parts;
-    int     i;
+	char    **tokens;
+	char    **parts;
+	int     i;
 
-    tokens = ft_split(line, ' ');
-    i = 0;
-    while (tokens[i])
-    {
-        parts = ft_split(tokens[i], ',');
-        points_row[i].z = ft_atoi(parts[0]);
-        
-        // Handle color if present
-        if (parts[1])
-            points_row[i].color = ft_atoi_base(parts[1], 16);
-        else
-            points_row[i].color = 0xFFFFFF;  // Default white
-        
-        free_split(parts);
-        free(tokens[i]);
-        i++;
-    }
-    free(tokens);
+	tokens = ft_split(line, ' ');
+	i = 0;
+	while (tokens[i])
+	{
+		parts = ft_split(tokens[i], ',');
+		points_row[i].z = ft_atoi(parts[0]);
+		
+		// Handle color if present
+		if (parts[1])
+			points_row[i].color = ft_atoi_base(parts[1], 16);
+		else
+			points_row[i].color = 0xFFFFFF;  // Default white
+		
+		free_split(parts);
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
 }
 
 void	compute_projection(t_data *data)
