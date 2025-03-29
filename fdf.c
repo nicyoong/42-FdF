@@ -173,27 +173,38 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 	t_point	sign;
 	int		error;
 	int		e2;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
 
-	delta.x = abs(p1.x - p0.x);
-	delta.y = -abs(p1.y - p0.y);
-	sign.x = p0.x < p1.x ? 1 : -1;
-	sign.y = p0.y < p1.y ? 1 : -1;
+	// Convert floating-point coordinates to integers
+	x0 = roundf(p0.x);
+	y0 = roundf(p0.y);
+	x1 = roundf(p1.x);
+	y1 = roundf(p1.y);
+
+	delta.x = abs(x1 - x0);
+	delta.y = -abs(y1 - y0);
+	sign.x = x0 < x1 ? 1 : -1;
+	sign.y = y0 < y1 ? 1 : -1;
 	error = delta.x + delta.y;
+
 	while (1)
 	{
-		put_pixel(data, p0.x, p0.y, 0xFFFFFF);
-		if (p0.x == p1.x && p0.y == p1.y)
+		put_pixel(data, x0, y0, 0xFFFFFF);
+		if (x0 == x1 && y0 == y1)
 			break ;
 		e2 = 2 * error;
 		if (e2 >= delta.y)
 		{
 			error += delta.y;
-			p0.x += sign.x;
+			x0 += sign.x;
 		}
 		if (e2 <= delta.x)
 		{
 			error += delta.x;
-			p0.y += sign.y;
+			y0 += sign.y;
 		}
 	}
 }
