@@ -3,7 +3,8 @@ NAME    := fdf
 
 # List your source C files here (add or remove as needed)
 SRCS    := \
-			fdf.c
+			fdf.c \
+			main.c
 OBJS    := $(SRCS:.c=.o)
 
 # Compiler and flags
