@@ -16,11 +16,16 @@ typedef struct s_point
 	float	y;
 }	t_point;
 
+typedef struct s_color {
+    int     z;
+    int     color;
+} t_color;
+
 typedef struct s_map
 {
 	int		height;
 	int		width;
-	int		**z_values;
+	t_color **points;
 }	t_map;
 
 typedef struct s_data
