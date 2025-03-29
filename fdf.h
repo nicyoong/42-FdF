@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:27:24 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:58:37 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:03:58 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ typedef struct s_bounds {
 	float	y_min;
 	float	y_max;
 }	t_bounds;
+
+typedef struct s_line {
+	int	x;
+	int	y;
+	int	dx;
+	int	dy;
+	int	err;
+	int	sx;
+	int	sy;
+}	t_line;
 
 typedef struct s_data
 {
