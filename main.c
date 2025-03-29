@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 02:26:19 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:26:20 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:29:58 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	data.win_height = 1500;
 	data.win = mlx_new_window(data.mlx, data.win_width, data.win_height, "FDF");
 	data.img = mlx_new_image(data.mlx, data.win_width, data.win_height);
-	data.img_addr = mlx_get_data_addr(data.img, &data.bpp, &data.line_length, &data.endian);
+	data.img_addr = mlx_get_data_addr(data.img, &data.bpp,
+			&data.line_length, &data.endian);
 	compute_projection(&data);
 	scale_and_center(&data);
 	draw_map(&data);
