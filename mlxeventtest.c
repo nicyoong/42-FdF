@@ -1,5 +1,6 @@
 #include "minilibx-linux/mlx.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 #define WIDTH 400
 #define HEIGHT 300
@@ -18,7 +19,7 @@ int key_handler(int keycode, t_data *data)
         mlx_destroy_window(data->mlx, data->win);
         exit(0);
     }
-    ft_printf("Key pressed: %d\n", keycode);
+    printf("Key pressed: %d\n", keycode);
     return (0);
 }
 
@@ -26,13 +27,13 @@ int mouse_handler(int button, int x, int y, t_data *data)
 {
     data->mouse_x = x;
     data->mouse_y = y;
-    ft_printf("Mouse click: button %d at (%d, %d)\n", button, x, y);
+    printf("Mouse click: button %d at (%d, %d)\n", button, x, y);
     return (0);
 }
 
 int close_handler(t_data *data)
 {
-    ft_printf("Window closed\n");
+    printf("Window closed\n");
     mlx_destroy_window(data->mlx, data->win);
     exit(0);
 }
