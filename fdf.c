@@ -177,3 +177,22 @@ void	draw_line(t_point p0, t_point p1, t_data *data)
 	}
 }
 
+void	draw_map(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < data->map->height)
+	{
+		j = -1;
+		while (++j < data->map->width)
+		{
+			if (j < data->map->width - 1)
+				draw_line(data->screen_coords[i][j], data->screen_coords[i][j + 1], data);
+			if (i < data->map->height - 1)
+				draw_line(data->screen_coords[i][j], data->screen_coords[i + 1][j], data);
+		}
+	}
+}
+
