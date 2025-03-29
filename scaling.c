@@ -6,25 +6,26 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:56:32 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:56:38 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:39:03 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_bounds find_bounds(t_data *data)
+static t_bounds	find_bounds(t_data *data)
 {
-	t_bounds bounds = {
-		.x_min = INFINITY,
-		.x_max = -INFINITY,
-		.y_min = INFINITY,
-		.y_max = -INFINITY
-	};
-	int i = -1;
+	t_bounds	bounds;
+	int			i;
+	int			j;
 
+	i = -1;
+	bounds.x_min = INFINITY;
+	bounds.x_max = -INFINITY;
+	bounds.y_min = INFINITY;
+	bounds.y_max = -INFINITY;
 	while (++i < data->map->height)
 	{
-		int j = -1;
+		j = -1;
 		while (++j < data->map->width)
 		{
 			bounds.x_min = fmin(bounds.x_min, data->screen_coords[i][j].x);
@@ -36,17 +37,21 @@ static t_bounds find_bounds(t_data *data)
 	return (bounds);
 }
 
-static float get_scale_factor(t_data *data, t_bounds bounds)
+static float	get_scale_factor(t_data *data, t_bounds bounds)
 {
-	const float x_span = bounds.x_max - bounds.x_min;
-	const float y_span = bounds.y_max - bounds.y_min;
-	const float x_scale = (data->win_width - 40) / x_span;
-	const float y_scale = (data->win_height - 40) / y_span;
+	float	x_span;
+	float	y_span;
+	float	x_scale;
+	float	y_scale;
 
+	x_span = bounds.x_max - bounds.x_min;
+	y_span = bounds.y_max - bounds.y_min;
+	x_scale = (data->win_width - 40) / x_span;
+	y_scale = (data->win_height - 40) / y_span;
 	return (fmin(x_scale, y_scale));
 }
 
-static void apply_scaling(t_data *data, float scale, t_bounds bounds)
+static void	apply_scaling(t_data *data, float scale, t_bounds bounds)
 {
 	int		i;
 	int		j;
@@ -61,15 +66,15 @@ static void apply_scaling(t_data *data, float scale, t_bounds bounds)
 		j = -1;
 		while (++j < data->map->width)
 		{
-			data->screen_coords[i][j].x = (data->screen_coords[i][j].x - x_center) 
-				* scale + data->win_width / 2;
-			data->screen_coords[i][j].y = (data->screen_coords[i][j].y - y_center) 
-				* scale + data->win_height / 2;
+			data->screen_coords[i][j].x = (data->screen_coords[i][j].x
+					- x_center) * scale + data->win_width / 2;
+			data->screen_coords[i][j].y = (data->screen_coords[i][j].y
+					- y_center) * scale + data->win_height / 2;
 		}
 	}
 }
 
-void scale_and_center(t_data *data)
+void	scale_and_center(t_data *data)
 {
 	t_bounds	bounds;
 	float		scale;
