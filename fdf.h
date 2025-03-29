@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:27:24 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:09:29 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:11:43 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_line {
 	int	err;
 	int	sx;
 	int	sy;
+	int	target_x;
+	int	target_y;
 }	t_line;
 
 typedef struct s_points_int {
