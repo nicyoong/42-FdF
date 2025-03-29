@@ -151,8 +151,6 @@ void	compute_projection(t_data *data)
 	}
 }
 
-
-
 void	scale_and_center(t_data *data)
 {
 	int		i;
