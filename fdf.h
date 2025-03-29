@@ -53,8 +53,8 @@ int		count_words(const char *s, char c);
 int		ft_atoi_base(const char *str, int base);
 
 // Parsing
-void	parse_map(char *filename, t_map **map);
 void	parse_line(char *line, t_color *points_row);
+void	parse_map(char *filename, t_map **map);
 
 // Projection
 void	compute_projection(t_data *data);
