@@ -6,6 +6,7 @@ SRCS    := \
 			fdf.c \
 			hook.c \
 			draw.c \
+			fdfutils.c \
 			main.c
 OBJS    := $(SRCS:.c=.o)
 
