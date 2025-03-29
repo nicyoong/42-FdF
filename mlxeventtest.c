@@ -14,7 +14,7 @@ typedef struct s_data {
 
 int key_handler(int keycode, t_data *data)
 {
-    if (keycode == 53) // ESC key
+    if (keycode == 65307) // ESC key
     {
         mlx_destroy_window(data->mlx, data->win);
         exit(0);
