@@ -63,15 +63,15 @@ void	parse_map(char *filename, t_map **map)
 	*map = malloc(sizeof(t_map));
 	(*map)->height = ft_lstsize(lines);
 	(*map)->width = count_words((char *)lines->content, ' ');
-	(*map)->z_values = malloc(sizeof(int *) * (*map)->height);
+	(*map)->points = malloc(sizeof(t_color *) * (*map)->height);
 
 	// Process lines and free list
 	i = 0;
 	current = lines;
 	while (current)
 	{
-		(*map)->z_values[i] = malloc(sizeof(int) * (*map)->width);
-		parse_line((char *)current->content, (*map)->z_values[i++]);
+		(*map)->points[i] = malloc(sizeof(t_color) * (*map)->width);
+		parse_line((char *)current->content, (*map)->points[i++]);
 		free(current->content); // Free the line string
 		current = current->next;
 	}
@@ -80,20 +80,30 @@ void	parse_map(char *filename, t_map **map)
 	ft_lstclear(&lines, NULL);
 }
 
-void	parse_line(char *line, int *z_row)
+void parse_line(char *line, t_color *points_row)
 {
-	char	**tokens;
-	int		i;
+    char    **tokens;
+    char    **parts;
+    int     i;
 
-	tokens = ft_split(line, ' ');
-	i = 0;
-	while (tokens[i])
-	{
-		z_row[i] = ft_atoi(tokens[i]);
-		free(tokens[i]);
-		i++;
-	}
-	free(tokens);
+    tokens = ft_split(line, ' ');
+    i = 0;
+    while (tokens[i])
+    {
+        parts = ft_split(tokens[i], ',');
+        points_row[i].z = ft_atoi(parts[0]);
+        
+        // Handle color if present
+        if (parts[1])
+            points_row[i].color = ft_atoi_base(parts[1], 16);
+        else
+            points_row[i].color = 0xFFFFFF;  // Default white
+        
+        free_split(parts);
+        free(tokens[i]);
+        i++;
+    }
+    free(tokens);
 }
 
 void	compute_projection(t_data *data)
