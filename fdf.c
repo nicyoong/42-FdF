@@ -98,3 +98,39 @@ void	compute_projection(t_data *data)
 
 
 
+void	scale_and_center(t_data *data)
+{
+	int		i;
+	int		j;
+	float	min_max[4];
+	float	scale;
+
+	min_max[0] = INFINITY;
+	min_max[1] = -INFINITY;
+	min_max[2] = INFINITY;
+	min_max[3] = -INFINITY;
+	i = -1;
+	while (++i < data->map->height)
+	{
+		j = -1;
+		while (++j < data->map->width)
+		{
+			min_max[0] = fmin(min_max[0], data->screen_coords[i][j].x);
+			min_max[1] = fmax(min_max[1], data->screen_coords[i][j].x);
+			min_max[2] = fmin(min_max[2], data->screen_coords[i][j].y);
+			min_max[3] = fmax(min_max[3], data->screen_coords[i][j].y);
+		}
+	}
+	scale = fmin((data->win_width - 40) / (min_max[1] - min_max[0]),
+		(data->win_height - 40) / (min_max[3] - min_max[2]));
+	i = -1;
+	while (++i < data->map->height)
+	{
+		j = -1;
+		while (++j < data->map->width)
+		{
+			data->screen_coords[i][j].x = (data->screen_coords[i][j].x - (min_max[0] + min_max[1]) / 2) * scale + data->win_width / 2;
+			data->screen_coords[i][j].y = (data->screen_coords[i][j].y - (min_max[2] + min_max[3]) / 2) * scale + data->win_height / 2;
+		}
+	}
+}
