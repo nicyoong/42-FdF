@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:27:24 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:03:58 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:09:29 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@ typedef struct s_line {
 	int	sx;
 	int	sy;
 }	t_line;
+
+typedef struct s_points_int {
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
+}	t_points_int;
 
 typedef struct s_data
 {

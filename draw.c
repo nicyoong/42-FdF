@@ -6,13 +6,13 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:36:02 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:06:57 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 02:07:50 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void init_line_params(t_line *l, int x0, int y0, int x1, int y1)
+static void	init_line_params(t_line *l, int x0, int y0, int x1, int y1)
 {
 	l->dx = abs(x1 - x0);
 	l->dy = -abs(y1 - y0);
@@ -32,7 +32,7 @@ static void init_line_params(t_line *l, int x0, int y0, int x1, int y1)
 	l->err = l->dx + l->dy;
 }
 
-static void draw_pixels(t_data *data, t_line *l, int color)
+static void	draw_pixels(t_data *data, t_line *l, int color)
 {
 	int	e2;
 
@@ -56,7 +56,7 @@ static void draw_pixels(t_data *data, t_line *l, int color)
 	}
 }
 
-void draw_line(t_point p0, t_point p1, t_data *data, int color)
+void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 {
 	t_line	line;
 	int		x0;
