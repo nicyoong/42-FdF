@@ -7,6 +7,7 @@ SRCS    := \
 			hook.c \
 			draw.c \
 			fdfutils.c \
+			fdfparser.c \
 			main.c
 OBJS    := $(SRCS:.c=.o)
 
