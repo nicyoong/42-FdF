@@ -18,7 +18,6 @@ COLOR_RED="\033[31m"
 COLOR_YELLOW="\033[33m"
 COLOR_RESET="\033[0m"
 VALGRIND_ENABLED=true  # Set to false to disable Valgrind
-VALGRIND_OPTS="--leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes -s"
 
 # Check test directory
 if [ ! -d "$TEST_DIR" ]; then
@@ -52,7 +51,7 @@ for test_file in "${TEST_FILES[@]}"; do
     if [ "$VALGRIND_ENABLED" = true ]; then
         echo -e "${COLOR_YELLOW}Running with Valgrind...${COLOR_RESET}"
         # Run with Valgrind in the background
-        valgrind $VALGRIND_OPTS "$FDF_EXEC" "$test_file" > valgrind_output_$CURRENT_TEST.txt 2>&1 &
+        valgrind "$FDF_EXEC" "$test_file" > valgrind_output_$CURRENT_TEST.txt 2>&1 &
         VALGRIND_PID=$!
         
         # Give some time for the window to open
