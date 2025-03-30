@@ -12,7 +12,8 @@
 
 #include "fdf.h"
 
-t_bresenham init_bresenham(t_point p0, t_point p1) {
+t_bresenham init_bresenham(t_point p0, t_point p1)
+{
 	t_bresenham	b;
 
 	b.x0 = roundf(p0.x);
@@ -31,6 +32,29 @@ t_bresenham init_bresenham(t_point p0, t_point p1) {
 		b.sign.y = -1;
 	b.error = b.delta.x + b.delta.y;
 	return (b);
+}
+
+void draw_bresenham_line(t_data *data, t_bresenham *b, int color)
+{
+	int	e2;
+
+	while (1)
+	{
+		put_pixel(data, b->x0, b->y0, color);
+		if (b->x0 == b->x1 && b->y0 == b->y1)
+			break ;
+		e2 = 2 * b->error;
+		if (e2 >= b->delta.y)
+		{
+			b->error += b->delta.y;
+			b->x0 += b->sign.x;
+		}
+		if (e2 <= b->delta.x)
+		{
+			b->error += b->delta.x;
+			b->y0 += b->sign.y;
+		}
+	}
 }
 
 // void	draw_line(t_point p0, t_point p1, t_data *data, int color)
