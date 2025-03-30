@@ -6,13 +6,39 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:56:32 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:39:03 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:34:11 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static t_bounds	find_bounds(t_data *data)
+/**
+ * Finds the bounding coordinates of the map's projected points.
+ * 
+ * This function iterates through the map's 2D projected points 
+ * and computes the 
+ * minimum and maximum values for both the x and y coordinates. These bounds 
+ * are used for scaling and centering the map within the window, ensuring that 
+ * the entire map fits within the screen's dimensions.
+ * 
+ * Steps:
+ * 
+ * 1. Initializes the bounding values (`x_min`, `x_max`, `y_min`, `y_max`) 
+ * to extreme values.
+ * 
+ * 2. Iterates through all the map's projected points and updates 
+ * the bounds to reflect the 
+ *    minimum and maximum x and y coordinates.
+ * 
+ * 3. Returns the computed bounds.
+ * 
+ * @param data - A pointer to the data structure containing 
+ * the map and screen coordinates.
+ * 
+ * @return t_bounds - A structure containing the minimum and 
+ * maximum x and y coordinates of the map.
+ */
+t_bounds	find_bounds(t_data *data)
 {
 	t_bounds	bounds;
 	int			i;
@@ -37,7 +63,35 @@ static t_bounds	find_bounds(t_data *data)
 	return (bounds);
 }
 
-static float	get_scale_factor(t_data *data, t_bounds bounds)
+/**
+ * Calculates the scale factor to fit the map within the window.
+ * 
+ * This function computes the scale factor based on the map's bounding box 
+ * and the window dimensions. It ensures that the map fits within the window 
+ * by considering the width and height of the map and adjusting the scale 
+ * proportionally. The function returns the smallest scale factor between 
+ * the x and y axes to maintain the aspect ratio and avoid distortion.
+ * 
+ * Steps:
+ * 
+ * 1. Computes the horizontal span (`x_span`) and vertical span (`y_span`) 
+ *    of the map based on the bounding coordinates.
+ * 
+ * 2. Calculates the scale factor for the x-axis and y-axis by dividing the 
+ *    window size (minus padding) by the respective spans.
+ * 
+ * 3. Returns the smaller of the two scale factors to ensure the map fits 
+ *    within the window without distortion.
+ * 
+ * @param data - A pointer to the data structure containing the 
+ * window dimensions.
+ * @param bounds - A structure containing the minimum and maximum 
+ * x and y coordinates of the map.
+ * 
+ * @return float - The scale factor that will be used to scale 
+ * the map to fit within the window.
+ */
+float	get_scale_factor(t_data *data, t_bounds bounds)
 {
 	float	x_span;
 	float	y_span;
@@ -51,7 +105,30 @@ static float	get_scale_factor(t_data *data, t_bounds bounds)
 	return (fmin(x_scale, y_scale));
 }
 
-static void	apply_scaling(t_data *data, float scale, t_bounds bounds)
+/**
+ * Applies scaling and centers the map's projected points within the window.
+ * 
+ * This function scales the map's projected points based on the provided scale 
+ * factor, and then centers them within the window. It ensures that the map 
+ * is proportionally scaled and positioned in the center of the screen, taking 
+ * into account the map's bounds and the window size.
+ * 
+ * Steps:
+ * 
+ * 1. Calculates the center of the map based on its bounding coordinates.
+ * 
+ * 2. Scales each point by the given scale factor, adjusting the position 
+ *    relative to the center.
+ * 
+ * 3. Moves the map so that it is centered within the window.
+ * 
+ * @param data - A pointer to the data structure containing the map 
+ * and screen coordinates.
+ * @param scale - The scale factor to apply to the map's projected points.
+ * @param bounds - A structure containing the minimum and maximum 
+ * x and y coordinates of the map.
+ */
+void	apply_scaling(t_data *data, float scale, t_bounds bounds)
 {
 	int		i;
 	int		j;
@@ -74,6 +151,31 @@ static void	apply_scaling(t_data *data, float scale, t_bounds bounds)
 	}
 }
 
+/**
+ * Scales and centers the map for proper visualization on the screen.
+ * 
+ * This function adjusts the map's scale and 
+ * position to ensure that the entire map 
+ * fits within the window and is properly centered. 
+ * It first computes the map's bounds 
+ * (the minimum and maximum x, y, and z values), 
+ * then calculates a scale factor to 
+ * fit the map within the screen dimensions. 
+ * Finally, it applies the scaling and centering 
+ * transformations to the map's points.
+ * 
+ * Steps:
+ * 1. Finds the bounds of the map using `find_bounds`, 
+ * which determines the minimum and maximum 
+ *    x, y, and z values of the map points.
+ * 2. Calculates the scale factor using `get_scale_factor`, 
+ * based on the map's size and the screen size.
+ * 3. Applies the scaling and centering transformations 
+ * to the map using `apply_scaling`.
+ * 
+ * @param data - A pointer to the data structure that 
+ * contains the map and other related information.
+ */
 void	scale_and_center(t_data *data)
 {
 	t_bounds	bounds;

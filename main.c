@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 02:26:19 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 22:14:54 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:18:45 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,20 @@
  * parsing, initializes necessary structures, and begins the rendering loop.
  * 
  * Steps:
+ * 
  * 1. Validates the command-line arguments, ensuring a map file is provided.
+ * 
  * 2. Parses the input map file into a data structure.
+ * 
  * 3. Initializes the MinilibX library and sets up the window properties.
+ * 
  * 4. Loads the map into an image buffer and computes necessary transformations 
  *    such as scaling and centering.
+ * 
  * 5. Renders the map by drawing it to the window.
+ * 
  * 6. Sets up event handlers for key presses and window closing.
+ * 
  * 7. Starts the MinilibX event loop to handle rendering and user interactions.
  * 
  * @param argc - The number of command-line arguments.
