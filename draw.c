@@ -59,10 +59,10 @@ void draw_bresenham_line(t_data *data, t_bresenham *b, int color)
 
 void draw_line(t_point p0, t_point p1, t_data *data, int color)
 {
-    t_bresenham b;
+	t_bresenham	b;
 
 	b = init_bresenham(p0, p1);
-    draw_bresenham_line(data, &b, color);
+	draw_bresenham_line(data, &b, color);
 }
 
 void	draw_map(t_data *data)
