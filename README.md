@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-FDF (Field of View) is a graphical project that allows you to visualize 3D models in 2D. The goal of this project is to render 3D objects using projection, focusing on creating a wireframe representation of a map. The main objective was to implement Bresenham's Line Algorithm to draw straight lines in a 2D plane, which was used to render the wireframe of the 3D object.
+FDF (Fil de Fer, Wireframe) is a graphical project that allows you to visualize 3D models in 2D. The goal of this project is to render 3D objects using projection, focusing on creating a wireframe representation of a map. The main objective was to implement Bresenham's Line Algorithm to draw straight lines in a 2D plane, which was used to render the wireframe of the 3D object.
 
 ## What I Learned
 
