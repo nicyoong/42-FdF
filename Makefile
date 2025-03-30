@@ -3,7 +3,7 @@ NAME    := fdf
 
 # List your source C files here (add or remove as needed)
 SRCS    := \
-			fdf.c \
+			projection.c \
 			hook.c \
 			draw.c \
 			fdfutils.c \
