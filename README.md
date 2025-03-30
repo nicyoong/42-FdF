@@ -10,7 +10,7 @@ FDF (Field of View) is a graphical project that allows you to visualize 3D model
    - One of the main concepts I had to learn for this project was the implementation of **Bresenham's Line Algorithm**. This algorithm is a fundamental method for drawing lines in computer graphics. It uses an efficient way of calculating the points of a line between two endpoints on a grid, without needing to perform floating-point arithmetic. 
    - I learned how to use integer-based calculations to determine the pixel positions along the line, which results in faster rendering, especially when dealing with large numbers of lines.
 
-### 2. **2D to 3D Projection**
+### 2. **3D to 2D Projection**
    - The project required me to implement a 3D to 2D projection, simulating a 3D object in a 2D space. I became familiar with the principles of geometric transformations, including translation, rotation, and scaling. These transformations allowed me to move, scale, and rotate the 3D map to fit into the 2D window properly.
    - I learned how to work with a basic 3D coordinate system and apply perspective transformations to produce a visually accurate 2D representation of the 3D model.
 
