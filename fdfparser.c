@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:43:36 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 22:11:06 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:15:54 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,29 @@ t_map	*init_map(t_list *lines)
 	return (map);
 }
 
+void	parse_line(char *line, t_color *points_row)
+{
+	char	**tokens;
+	char	**parts;
+	int		i;
+
+	tokens = ft_split(line, ' ');
+	i = 0;
+	while (tokens[i])
+	{
+		parts = ft_split(tokens[i], ',');
+		points_row[i].z = ft_atoi(parts[0]);
+		if (parts[1])
+			points_row[i].color = ft_atoi_base(parts[1], 16);
+		else
+			points_row[i].color = 0xFFFFFF;
+		free_split(parts);
+		free(tokens[i]);
+		i++;
+	}
+	free(tokens);
+}
+
 void	parse_and_store_lines(t_map *map, t_list *lines)
 {
 	t_list	*current;
@@ -80,27 +103,4 @@ void	parse_map(char *filename, t_map **map)
 	*map = init_map(lines);
 	parse_and_store_lines(*map, lines);
 	ft_lstclear(&lines, NULL);
-}
-
-void	parse_line(char *line, t_color *points_row)
-{
-	char	**tokens;
-	char	**parts;
-	int		i;
-
-	tokens = ft_split(line, ' ');
-	i = 0;
-	while (tokens[i])
-	{
-		parts = ft_split(tokens[i], ',');
-		points_row[i].z = ft_atoi(parts[0]);
-		if (parts[1])
-			points_row[i].color = ft_atoi_base(parts[1], 16);
-		else
-			points_row[i].color = 0xFFFFFF;
-		free_split(parts);
-		free(tokens[i]);
-		i++;
-	}
-	free(tokens);
 }
