@@ -6,13 +6,13 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:36:02 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:38:41 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:04:32 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-t_bresenham init_bresenham(t_point p0, t_point p1)
+t_bresenham	init_bresenham(t_point p0, t_point p1)
 {
 	t_bresenham	b;
 
@@ -34,7 +34,7 @@ t_bresenham init_bresenham(t_point p0, t_point p1)
 	return (b);
 }
 
-void draw_bresenham_line(t_data *data, t_bresenham *b, int color)
+void	draw_bresenham_line(t_data *data, t_bresenham *b, int color)
 {
 	int	e2;
 
@@ -57,7 +57,7 @@ void draw_bresenham_line(t_data *data, t_bresenham *b, int color)
 	}
 }
 
-void draw_line(t_point p0, t_point p1, t_data *data, int color)
+void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 {
 	t_bresenham	b;
 
@@ -77,16 +77,15 @@ void	draw_map(t_data *data)
 		while (++j < data->map->width)
 		{
 			if (j < data->map->width - 1)
-				draw_line(data->screen_coords[i][j], 
-						data->screen_coords[i][j+1], 
-						data, 
-						data->map->points[i][j].color);
-
+				draw_line(data->screen_coords[i][j],
+					data->screen_coords[i][j + 1],
+					data,
+					data->map->points[i][j].color);
 			if (i < data->map->height - 1)
-				draw_line(data->screen_coords[i][j], 
-						data->screen_coords[i+1][j], 
-						data, 
-						data->map->points[i][j].color);
+				draw_line(data->screen_coords[i][j],
+					data->screen_coords[i + 1][j],
+					data,
+					data->map->points[i][j].color);
 		}
 	}
 }
