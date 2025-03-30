@@ -27,7 +27,6 @@ void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 	y0 = roundf(p0.y);
 	x1 = roundf(p1.x);
 	y1 = roundf(p1.y);
-
 	delta.x = abs(x1 - x0);
 	delta.y = -abs(y1 - y0);
 	if (x0 < x1)
