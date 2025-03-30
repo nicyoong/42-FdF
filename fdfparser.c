@@ -20,9 +20,17 @@ static t_list *read_map_lines(char *filename) {
     t_list *lines = NULL;
     char *line;
 
-    while (line = get_next_line(fd)) {
-        ft_lstadd_back(&lines, ft_lstnew(line));
-    }
+    while (1) {
+		line = get_next_line(fd);
+		if (!line) break;
+	
+		t_list *node = ft_lstnew(line);
+		if (!node) {
+			free(line);
+			exit_error("Failed to allocate list node");
+		}
+		ft_lstadd_back(&lines, node);
+	}
     close(fd);
 
     if (!lines)
