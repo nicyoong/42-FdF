@@ -62,6 +62,16 @@ typedef struct s_data
 	t_point	**screen_coords;
 }	t_data;
 
+typedef struct s_bresenham {
+	t_point	delta;
+	t_point	sign;
+	int		error;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+}	t_bresenham;
+
 /*** FUNCTION PROTOTYPES ***/
 // Error handling
 void	exit_error(char *msg);
