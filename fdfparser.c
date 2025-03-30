@@ -12,38 +12,56 @@
 
 #include "fdf.h"
 
-void	parse_map(char *filename, t_map **map)
-{
-	int		fd;
-	char	*line;
-	t_list	*lines;
-	t_list	*current;
-	int		i;
+static t_list *read_map_lines(char *filename) {
+    int fd = open(filename, O_RDONLY);
+    if (fd < 0)
+        exit_error("Failed to open file");
 
-	lines = NULL;
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		exit_error("Failed to open file");
-	while ((line = get_next_line(fd)) != NULL)
-		ft_lstadd_back(&lines, ft_lstnew(line));
-	close(fd);
-	if (!lines)
-		exit_error("Empty map file");
-	*map = malloc(sizeof(t_map));
-	(*map)->height = ft_lstsize(lines);
-	(*map)->width = count_words((char *)lines->content, ' ');
-	(*map)->points = malloc(sizeof(t_color *) * (*map)->height);
-	i = 0;
-	current = lines;
-	while (current)
-	{
-		(*map)->points[i] = malloc(sizeof(t_color) * (*map)->width);
-		parse_line((char *)current->content, (*map)->points[i++]);
-		free(current->content);
-		current = current->next;
-	}
-	ft_lstclear(&lines, NULL);
+    t_list *lines = NULL;
+    char *line;
+
+    while (line = get_next_line(fd)) {
+        ft_lstadd_back(&lines, ft_lstnew(line));
+    }
+    close(fd);
+
+    if (!lines)
+        exit_error("Empty map file");
+    return lines;
 }
+
+// void	parse_map(char *filename, t_map **map)
+// {
+// 	int		fd;
+// 	char	*line;
+// 	t_list	*lines;
+// 	t_list	*current;
+// 	int		i;
+
+// 	lines = NULL;
+// 	fd = open(filename, O_RDONLY);
+// 	if (fd < 0)
+// 		exit_error("Failed to open file");
+// 	while ((line = get_next_line(fd)) != NULL)
+// 		ft_lstadd_back(&lines, ft_lstnew(line));
+// 	close(fd);
+// 	if (!lines)
+// 		exit_error("Empty map file");
+// 	*map = malloc(sizeof(t_map));
+// 	(*map)->height = ft_lstsize(lines);
+// 	(*map)->width = count_words((char *)lines->content, ' ');
+// 	(*map)->points = malloc(sizeof(t_color *) * (*map)->height);
+// 	i = 0;
+// 	current = lines;
+// 	while (current)
+// 	{
+// 		(*map)->points[i] = malloc(sizeof(t_color) * (*map)->width);
+// 		parse_line((char *)current->content, (*map)->points[i++]);
+// 		free(current->content);
+// 		current = current->next;
+// 	}
+// 	ft_lstclear(&lines, NULL);
+// }
 
 void	parse_line(char *line, t_color *points_row)
 {
