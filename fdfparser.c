@@ -59,6 +59,13 @@ static void parse_and_store_lines(t_map *map, t_list *lines) {
     }
 }
 
+void parse_map(char *filename, t_map **map) {
+    t_list *lines = read_map_lines(filename);
+    *map = init_map(lines);
+    parse_and_store_lines(*map, lines);
+    ft_lstclear(&lines, NULL);
+}
+
 // void	parse_map(char *filename, t_map **map)
 // {
 // 	int		fd;
