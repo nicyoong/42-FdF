@@ -44,6 +44,21 @@ static t_map *init_map(t_list *lines) {
     return map;
 }
 
+static void parse_and_store_lines(t_map *map, t_list *lines) {
+    t_list *current = lines;
+    int i = 0;
+
+    while (current) {
+        map->points[i] = malloc(sizeof(t_color) * map->width);
+        if (!map->points[i])
+            exit_error("Failed to allocate row");
+
+        parse_line((char *)current->content, map->points[i++]);
+        free(current->content);
+        current = current->next;
+    }
+}
+
 // void	parse_map(char *filename, t_map **map)
 // {
 // 	int		fd;
