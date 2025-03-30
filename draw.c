@@ -65,51 +65,6 @@ void draw_line(t_point p0, t_point p1, t_data *data, int color)
     draw_bresenham_line(data, &b, color);
 }
 
-// void	draw_line(t_point p0, t_point p1, t_data *data, int color)
-// {
-// 	t_point	delta;
-// 	t_point	sign;
-// 	int		error;
-// 	int		e2;
-// 	int		x0;
-// 	int		y0;
-// 	int		x1;
-// 	int		y1;
-
-// 	x0 = roundf(p0.x);
-// 	y0 = roundf(p0.y);
-// 	x1 = roundf(p1.x);
-// 	y1 = roundf(p1.y);
-// 	delta.x = abs(x1 - x0);
-// 	delta.y = -abs(y1 - y0);
-// 	if (x0 < x1)
-// 		sign.x = 1;
-// 	else
-// 		sign.x = -1;
-// 	if (y0 < y1)
-// 		sign.y = 1;
-// 	else
-// 		sign.y = -1;
-// 	error = delta.x + delta.y;
-// 	while (1)
-// 	{
-// 		put_pixel(data, x0, y0, color);
-// 		if (x0 == x1 && y0 == y1)
-// 			break ;
-// 		e2 = 2 * error;
-// 		if (e2 >= delta.y)
-// 		{
-// 			error += delta.y;
-// 			x0 += sign.x;
-// 		}
-// 		if (e2 <= delta.x)
-// 		{
-// 			error += delta.x;
-// 			y0 += sign.y;
-// 		}
-// 	}
-// }
-
 void	draw_map(t_data *data)
 {
 	int	i;
