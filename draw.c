@@ -23,7 +23,6 @@ void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 	int		x1;
 	int		y1;
 
-	// Convert floating-point coordinates to integers
 	x0 = roundf(p0.x);
 	y0 = roundf(p0.y);
 	x1 = roundf(p1.x);
@@ -31,10 +30,15 @@ void	draw_line(t_point p0, t_point p1, t_data *data, int color)
 
 	delta.x = abs(x1 - x0);
 	delta.y = -abs(y1 - y0);
-	sign.x = x0 < x1 ? 1 : -1;
-	sign.y = y0 < y1 ? 1 : -1;
+	if (x0 < x1)
+		sign.x = 1;
+	else
+		sign.x = -1;
+	if (y0 < y1)
+		sign.y = 1;
+	else
+		sign.y = -1;
 	error = delta.x + delta.y;
-
 	while (1)
 	{
 		put_pixel(data, x0, y0, color);
