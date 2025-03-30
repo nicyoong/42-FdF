@@ -30,6 +30,20 @@ static t_list *read_map_lines(char *filename) {
     return lines;
 }
 
+static t_map *init_map(t_list *lines) {
+    t_map *map = malloc(sizeof(t_map));
+    if (!map)
+        exit_error("Failed to allocate map");
+
+    map->height = ft_lstsize(lines);
+    map->width = count_words((char *)lines->content, ' ');
+    map->points = malloc(sizeof(t_color *) * map->height);
+    if (!map->points)
+        exit_error("Failed to allocate map points");
+
+    return map;
+}
+
 // void	parse_map(char *filename, t_map **map)
 // {
 // 	int		fd;
