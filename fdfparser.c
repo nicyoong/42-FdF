@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:43:36 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:27:49 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:11:06 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ t_list	*read_map_lines(char *filename)
 	int		fd;
 	t_list	*lines;
 	char	*line;
+	t_list	*node;
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -27,11 +28,9 @@ t_list	*read_map_lines(char *filename)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		t_list *node = ft_lstnew(line);
-		if (!node) {
-			free(line);
-			exit_error("Failed to allocate list node");
-		}
+		node = ft_lstnew(line);
+		if (!node)
+			handle_node_allocation_failure(line);
 		ft_lstadd_back(&lines, node);
 	}
 	close(fd);
@@ -40,7 +39,7 @@ t_list	*read_map_lines(char *filename)
 	return (lines);
 }
 
-static t_map *init_map(t_list *lines)
+t_map	*init_map(t_list *lines)
 {
 	t_map	*map;
 
@@ -55,7 +54,7 @@ static t_map *init_map(t_list *lines)
 	return (map);
 }
 
-static void parse_and_store_lines(t_map *map, t_list *lines)
+void	parse_and_store_lines(t_map *map, t_list *lines)
 {
 	t_list	*current;
 	int		i;
@@ -73,9 +72,9 @@ static void parse_and_store_lines(t_map *map, t_list *lines)
 	}
 }
 
-void parse_map(char *filename, t_map **map)
+void	parse_map(char *filename, t_map **map)
 {
-	t_list *lines;
+	t_list	*lines;
 
 	lines = read_map_lines(filename);
 	*map = init_map(lines);

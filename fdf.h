@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:27:24 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 01:58:37 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:10:22 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	free_split(char **arr);
 // Utility
 int		count_words(const char *s, char c);
 int		ft_atoi_base(const char *str, int base);
+void	handle_node_allocation_failure(void *line);
 
 // Parsing
 void	parse_line(char *line, t_color *points_row);

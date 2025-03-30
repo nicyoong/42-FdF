@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:40:15 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 02:30:55 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/30 22:10:14 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,10 @@ int	ft_atoi_base(const char *str, int base)
 		ptr++;
 	}
 	return (result);
+}
+
+void	handle_node_allocation_failure(void *line)
+{
+	free(line);
+	exit_error("Failed to allocate list node");
 }
