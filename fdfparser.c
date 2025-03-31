@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:43:36 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 22:26:23 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/03/31 17:38:23 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,7 +205,6 @@ void	parse_and_store_lines(t_map *map, t_list *lines)
 		if (!map->points[i])
 			exit_error("Failed to allocate row");
 		parse_line((char *)current->content, map->points[i++]);
-		free(current->content);
 		current = current->next;
 	}
 }
@@ -239,5 +238,5 @@ void	parse_map(char *filename, t_map **map)
 	lines = read_map_lines(filename);
 	*map = init_map(lines);
 	parse_and_store_lines(*map, lines);
-	ft_lstclear(&lines, NULL);
+	ft_lstclear(&lines, free);
 }
