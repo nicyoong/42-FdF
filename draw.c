@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:36:02 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 22:39:01 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/04/03 00:40:39 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
  * @return t_bresenham - A structure containing the 
  * parameters for Bresenham's algorithm.
  */
-
 t_bresenham	init_bresenham(t_point p0, t_point p1)
 {
 	t_bresenham	b;
