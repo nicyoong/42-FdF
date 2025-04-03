@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:27:24 by nyoong            #+#    #+#             */
-/*   Updated: 2025/03/30 22:10:22 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/04/03 21:43:11 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ typedef struct s_bresenham {
 // Error handling
 void	exit_error(char *msg);
 void	free_split(char **arr);
+void	free_coords(t_data *data);
+void	free_map(t_map *map);
 
 // Utility
 int		count_words(const char *s, char c);
