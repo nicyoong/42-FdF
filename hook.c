@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 01:34:13 by nyoong            #+#    #+#             */
-/*   Updated: 2025/04/03 21:45:01 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/04/03 22:01:28 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ int	key_hook(int keycode, t_data *data)
 	{
 		mlx_destroy_image(data->mlx, data->img);
 		mlx_destroy_window(data->mlx, data->win);
+		mlx_destroy_display(data->mlx);
+		mlx_loop_end(data->mlx);
+		free(data->mlx);
 		free_coords(data);
 		free_map(data->map);
+		free(data);
 		exit(0);
 	}
 	return (0);
@@ -80,8 +84,12 @@ int	close_hook(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	mlx_loop_end(data->mlx);
+	free(data->mlx);
 	free_coords(data);
 	free_map(data->map);
+	free(data);
 	exit(0);
 	return (0);
 }
