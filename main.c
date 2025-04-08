@@ -6,7 +6,7 @@
 /*   By: nyoong <nyoong@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 02:26:19 by nyoong            #+#    #+#             */
-/*   Updated: 2025/04/03 21:42:43 by nyoong           ###   ########.fr       */
+/*   Updated: 2025/04/08 23:30:29 by nyoong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,12 @@
  * Example usage:
  *   ./fdf map.fdf
  */
-
-void free_map(t_map *map)
+void	free_map(t_map *map)
 {
+	int	i;
+
 	if (map != NULL)
 	{
-		int	i;
-
 		i = 0;
 		while (i < map->height)
 		{
@@ -62,12 +61,12 @@ void free_map(t_map *map)
 	}
 }
 
-void free_coords(t_data *data)
+void	free_coords(t_data *data)
 {
+	int	i;
+
 	if (data != NULL)
 	{
-		int	i;
-
 		i = 0;
 		while (i < data->map->height)
 		{
